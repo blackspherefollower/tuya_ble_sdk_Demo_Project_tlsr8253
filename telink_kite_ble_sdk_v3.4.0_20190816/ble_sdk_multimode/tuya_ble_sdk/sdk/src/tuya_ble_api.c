@@ -1294,8 +1294,6 @@ tuya_ble_status_t tuya_ble_sdk_init(tuya_ble_device_param_t * param_data)
         {
             tuya_ble_current_para.pid_len = TUYA_BLE_PRODUCT_ID_MAX_LEN;
         }
-        
-        memcpy(tuya_ble_current_para.auth_settings.mac,param_data->mac_addr.addr,6);
 
         memcpy(tuya_ble_current_para.pid,param_data->product_id,tuya_ble_current_para.pid_len);
     }
@@ -1344,6 +1342,8 @@ tuya_ble_status_t tuya_ble_sdk_init(tuya_ble_device_param_t * param_data)
 
         memcpy(tuya_ble_current_para.auth_settings.auth_key,param_data->auth_key,AUTH_KEY_LEN);
         
+        memcpy(tuya_ble_current_para.auth_settings.mac,param_data->mac_addr.addr,6);
+
         TUYA_BLE_LOG_HEXDUMP_INFO("The MAC address passed in by the application", param_data->mac_addr.addr, 6);
         
     }
