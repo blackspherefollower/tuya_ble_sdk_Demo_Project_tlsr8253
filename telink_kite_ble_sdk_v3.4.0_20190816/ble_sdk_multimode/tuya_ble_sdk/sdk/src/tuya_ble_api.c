@@ -1294,6 +1294,8 @@ tuya_ble_status_t tuya_ble_sdk_init(tuya_ble_device_param_t * param_data)
         {
             tuya_ble_current_para.pid_len = TUYA_BLE_PRODUCT_ID_MAX_LEN;
         }
+        
+        memcpy(tuya_ble_current_para.auth_settings.mac,param_data->mac_addr.addr,6);
 
         memcpy(tuya_ble_current_para.pid,param_data->product_id,tuya_ble_current_para.pid_len);
     }
@@ -1366,6 +1368,7 @@ tuya_ble_status_t tuya_ble_sdk_init(tuya_ble_device_param_t * param_data)
             if((!tuya_ble_buffer_value_is_all_x(mac_temp,6,0))&&(memcmp(mac_temp,bt_addr.addr,6)))
             {                
                 memcpy(bt_addr.addr,mac_temp,6);
+
                 if(tuya_ble_gap_addr_set(&bt_addr)!=TUYA_BLE_SUCCESS)
                 {
                     TUYA_BLE_LOG_ERROR("GAP ADDR SET failed!");
